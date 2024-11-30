@@ -1,0 +1,71 @@
+# This template requires Lima v0.7.0 or later
+images:
+# Try to use release-yyyyMMdd image if available. Note that release-yyyyMMdd will be removed after several months.
+- location: "https://cloud.debian.org/images/cloud/bookworm/20241004-1890/debian-12-genericcloud-arm64-20241004-1890.qcow2"
+  arch: "aarch64"
+  digest: "sha512:c33f0c8138a2ba40483bd9021c810b464f2b3152671e6cc2ef89aed9e3ab839517ac1932f30be11a1b6c68b36317d3fd771c0285d27fe50b7e8f022244da1258"
+# Fallback to the latest release image.
+# Hint: run `limactl prune` to invalidate the cache
+- location: "https://cloud.debian.org/images/cloud/bookworm/latest/debian-12-genericcloud-arm64.qcow2"
+  arch: "aarch64"
+cpus: 2
+memory: 2G
+mounts:
+- location: "~/gokube"
+networks:
+  - lima: user-v2
+containerd:
+  system: false
+  user: false
+provision:
+  - mode: user
+    script: |
+      echo '# gokube begin' >> ~/.bashrc
+      echo 'export PATH=$PATH:/Users/$(whoami)/gokube' >> ~/.bashrc
+      echo '# gokube end' >> ~/.bashrc
+  - mode: system
+    script: |
+      #!/bin/bash
+      set -eux -o pipefail
+      command -v docker >/dev/null 2>&1 && exit 0
+      export DEBIAN_FRONTEND=noninteractive
+      curl -fsSL https://get.docker.com | sh
+      # NOTE: you may remove the lines below, if you prefer to use rootful docker, not rootless
+      systemctl disable --now docker
+      apt-get install -y uidmap dbus-user-session
+  - mode: user
+    script: |
+      #!/bin/bash
+      set -eux -o pipefail
+      systemctl --user start dbus
+      dockerd-rootless-setuptool.sh install
+      docker context use rootless
+  - mode: system
+    script: |
+      #!/bin/bash
+      set -eux -o pipefail
+      ETCD_VER=v3.5.4
+      DOWNLOAD_URL=https://github.com/etcd-io/etcd/releases/download
+      curl -L ${DOWNLOAD_URL}/${ETCD_VER}/etcd-${ETCD_VER}-linux-arm64.tar.gz -o /tmp/etcd-${ETCD_VER}-linux-arm64.tar.gz
+      tar xzvf /tmp/etcd-${ETCD_VER}-linux-arm64.tar.gz -C /tmp
+      mv /tmp/etcd-${ETCD_VER}-linux-arm64/etcdctl /usr/local/bin/
+      rm -rf /tmp/etcd-${ETCD_VER}-linux-arm64 /tmp/etcd-${ETCD_VER}-linux-arm64.tar.gz
+  - mode: system
+    script: |
+      #!/bin/bash
+      set -eux -o pipefail
+      apt-get update
+      apt-get install -y net-tools
+probes:
+  - script: |
+      #!/bin/bash
+      set -eux -o pipefail
+      if ! timeout 30s bash -c "until command -v docker >/dev/null 2>&1; do sleep 3; done"; then
+        echo >&2 "docker is not installed yet"
+        exit 1
+      fi
+      if ! timeout 30s bash -c "until pgrep rootlesskit; do sleep 3; done"; then
+        echo >&2 "rootlesskit (used by rootless docker) is not running"
+        exit 1
+      fi
+    hint: See "/var/log/cloud-init-output.log" in the guest

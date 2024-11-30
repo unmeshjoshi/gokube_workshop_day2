@@ -1,0 +1,14 @@
+#! /usr/bin/env bash
+
+TARGET_DIR=$PROJECT_HOME/${1}
+
+echo "generating mock for '$GOFILE' at '$TARGET_DIR'"
+
+mkdir -p "$TARGET_DIR"
+
+if [ $# -eq 2 ]; then
+    mockgen -destination "$TARGET_DIR/$GOFILE" -package "$GOPACKAGE" . $2
+else
+    mockgen -destination "$TARGET_DIR/$GOFILE" -package "$GOPACKAGE" -source "$GOFILE"
+fi
+
