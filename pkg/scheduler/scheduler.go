@@ -55,25 +55,7 @@ func (s *Scheduler) schedulePendingPods(ctx context.Context) error {
 		return fmt.Errorf("no nodes available for scheduling")
 	}
 
-	//Assignment4 Complete the scheduler implementation.
+	//Assignment 4: Complete the scheduler implementation.
 	_ = pods
-	// Simple round-robin scheduling
-	//for _, pod := range pods {
-	//	//TODO: We are picking up the nodes randomly. Need to have better policy based on the node status that the kubelet
-	//	//		updates periodically
-	//	node := nodes[rand.Intn(len(nodes))]
-	//
-	//	// Assign the pod to the node
-	//	pod.NodeName = node.Name
-	//	pod.Status = api.PodScheduled
-	//
-	//	// Update the pod in the registry
-	//	if err := s.podRegistry.UpdatePod(ctx, pod); err != nil {
-	//		return fmt.Errorf("failed to update pod %s: %v", pod.Name, err)
-	//	}
-	//
-	//	fmt.Printf("Scheduled pod %s on node %s\n", pod.Name, node.Name)
-	//}
-
 	return nil
 }

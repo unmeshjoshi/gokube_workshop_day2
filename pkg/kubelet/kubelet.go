@@ -11,11 +11,12 @@ import (
 	"os"
 	"time"
 
+	"gokube/pkg/api"
+	"gokube/pkg/registry/names"
+
 	"github.com/docker/docker/api/types/container"
 	"github.com/docker/docker/api/types/image"
 	"github.com/docker/docker/client"
-	"gokube/pkg/api"
-	"gokube/pkg/registry/names"
 )
 
 type Kubelet struct {
@@ -112,20 +113,7 @@ func (k *Kubelet) runNewPods(pods []*api.Pod) error {
 }
 
 func (k *Kubelet) getPodAssignments() ([]*api.Pod, error) {
-	//Assignment: Get Pods assigned to this node.
-	//Reference implementation below.
-	//resp, err := http.Get(fmt.Sprintf("%s/api/v1/pods?nodeName=%s", "http://"+k.apiServerURL, k.nodeName))
-	//if err != nil {
-	//	return nil, err
-	//}
-	//defer resp.Body.Close()
-	//
-	//var pods []*api.Pod
-	//if err := json.NewDecoder(resp.Body).Decode(&pods); err != nil {
-	//	return nil, err
-	//}
-	//
-	//return pods, nil
+	//Assignment 5: Get Pods assigned to this node.
 	return nil, nil
 }
 
@@ -364,32 +352,6 @@ func (k *Kubelet) updatePodStatuses() {
 }
 
 func (k *Kubelet) updatePodStatus(pod *api.Pod) error {
-	//Assignment: Update PodStatus with the APIServer.
-
-	//url := fmt.Sprintf("http://%s/api/v1/pods/%s", k.apiServerURL, pod.Name)
-	//
-	//jsonData, err := json.Marshal(pod)
-	//if err != nil {
-	//	return fmt.Errorf("failed to marshal pod data: %w", err)
-	//}
-	//
-	//req, err := http.NewRequest("PUT", url, bytes.NewBuffer(jsonData))
-	//if err != nil {
-	//	return fmt.Errorf("failed to create request: %w", err)
-	//}
-	//req.Header.Set("Content-Type", restful.MIME_JSON)
-	//
-	//resp, err := http.DefaultClient.Do(req)
-	//if err != nil {
-	//	return fmt.Errorf("failed to send request to API server: %w", err)
-	//}
-	//defer resp.Body.Close()
-	//
-	//if resp.StatusCode != http.StatusOK {
-	//	return fmt.Errorf("failed to update pod status, status code: %d", resp.StatusCode)
-	//}
-	//
-	//log.Printf("Updated pod status for %s: %v", pod.Name, pod.Status)
-
+	//Assignment 6: Update PodStatus with the APIServer.
 	return nil
 }

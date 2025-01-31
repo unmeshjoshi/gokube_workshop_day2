@@ -1,99 +1,147 @@
 {
   "lockfile_version": "1",
   "packages": {
-    "goreleaser@latest": {
-      "last_modified": "2024-11-03T14:18:04Z",
-      "resolved": "github:NixOS/nixpkgs/4ae2e647537bcdbb82265469442713d066675275#goreleaser",
+    "colima@0.8.1": {
+      "last_modified": "2025-01-19T08:16:51Z",
+      "resolved": "github:NixOS/nixpkgs/50165c4f7eb48ce82bd063e1fb8047a0f515f8ce#colima",
       "source": "devbox-search",
-      "version": "2.3.2",
+      "version": "0.8.1",
       "systems": {
         "aarch64-darwin": {
           "outputs": [
             {
               "name": "out",
-              "path": "/nix/store/gnhsc6zjrbqx714nn8lid7p3qbfzzpp4-goreleaser-2.3.2",
+              "path": "/nix/store/vq94skd8lgv2j994b0nikcp8pnbw8cww-colima-0.8.1",
               "default": true
             }
           ],
-          "store_path": "/nix/store/gnhsc6zjrbqx714nn8lid7p3qbfzzpp4-goreleaser-2.3.2"
+          "store_path": "/nix/store/vq94skd8lgv2j994b0nikcp8pnbw8cww-colima-0.8.1"
         },
         "aarch64-linux": {
           "outputs": [
             {
               "name": "out",
-              "path": "/nix/store/pq60y01nwxvamf690dksr65bs5sdqm7z-goreleaser-2.3.2",
+              "path": "/nix/store/dy7xwrxj190ycggh34ffhv786kw07pk0-colima-0.8.1",
               "default": true
             }
           ],
-          "store_path": "/nix/store/pq60y01nwxvamf690dksr65bs5sdqm7z-goreleaser-2.3.2"
+          "store_path": "/nix/store/dy7xwrxj190ycggh34ffhv786kw07pk0-colima-0.8.1"
         },
         "x86_64-darwin": {
           "outputs": [
             {
               "name": "out",
-              "path": "/nix/store/h9hzbyr7avbb2i9qj5di43859md4yxjx-goreleaser-2.3.2",
+              "path": "/nix/store/8fkf8df6yqksdswnmqy7xfa4yl4xyj05-colima-0.8.1",
               "default": true
             }
           ],
-          "store_path": "/nix/store/h9hzbyr7avbb2i9qj5di43859md4yxjx-goreleaser-2.3.2"
+          "store_path": "/nix/store/8fkf8df6yqksdswnmqy7xfa4yl4xyj05-colima-0.8.1"
         },
         "x86_64-linux": {
           "outputs": [
             {
               "name": "out",
-              "path": "/nix/store/lw7kqjrwnv6k42jaiawzsg02nbm6yd44-goreleaser-2.3.2",
+              "path": "/nix/store/5qmh66irmiaxa4myc80bwhhpk6x5y7l1-colima-0.8.1",
               "default": true
             }
           ],
-          "store_path": "/nix/store/lw7kqjrwnv6k42jaiawzsg02nbm6yd44-goreleaser-2.3.2"
+          "store_path": "/nix/store/5qmh66irmiaxa4myc80bwhhpk6x5y7l1-colima-0.8.1"
         }
       }
     },
-    "lima@latest": {
-      "last_modified": "2024-11-16T13:27:01Z",
-      "resolved": "github:NixOS/nixpkgs/c69a9bffbecde46b4b939465422ddc59493d3e4d#lima",
+    "docker@27.5.0": {
+      "last_modified": "2025-01-22T06:06:04Z",
+      "resolved": "github:NixOS/nixpkgs/5757bbb8bd7c0630a0cc4bb19c47e588db30b97c#docker",
       "source": "devbox-search",
-      "version": "1.0.1",
+      "version": "27.5.0",
       "systems": {
         "aarch64-darwin": {
           "outputs": [
             {
               "name": "out",
-              "path": "/nix/store/q6p9m753a5zxxz07m4nxchy9cn9yw5ky-lima-1.0.1",
+              "path": "/nix/store/bav9fyspzl9i9fx6nykb7jqdmr5qwvfz-docker-27.5.0",
               "default": true
             }
           ],
-          "store_path": "/nix/store/q6p9m753a5zxxz07m4nxchy9cn9yw5ky-lima-1.0.1"
+          "store_path": "/nix/store/bav9fyspzl9i9fx6nykb7jqdmr5qwvfz-docker-27.5.0"
         },
         "aarch64-linux": {
           "outputs": [
             {
               "name": "out",
-              "path": "/nix/store/14dzc06vh27wqnxjimglw69pl7dqhf99-lima-1.0.1",
+              "path": "/nix/store/v3avgyz1ybih0ai2rhhp8gchxvb4q3yz-docker-27.5.0",
               "default": true
             }
           ],
-          "store_path": "/nix/store/14dzc06vh27wqnxjimglw69pl7dqhf99-lima-1.0.1"
+          "store_path": "/nix/store/v3avgyz1ybih0ai2rhhp8gchxvb4q3yz-docker-27.5.0"
         },
         "x86_64-darwin": {
           "outputs": [
             {
               "name": "out",
-              "path": "/nix/store/ln0pxwczq5xgwaczxlf2l2j9zkd4p4xp-lima-1.0.1",
+              "path": "/nix/store/n966jsfz86wpgddnlc9xniix9zv1vha9-docker-27.5.0",
               "default": true
             }
           ],
-          "store_path": "/nix/store/ln0pxwczq5xgwaczxlf2l2j9zkd4p4xp-lima-1.0.1"
+          "store_path": "/nix/store/n966jsfz86wpgddnlc9xniix9zv1vha9-docker-27.5.0"
         },
         "x86_64-linux": {
           "outputs": [
             {
               "name": "out",
-              "path": "/nix/store/9pdiwicp36l50rm6hasyfxm30yaidcs4-lima-1.0.1",
+              "path": "/nix/store/s9g8d3q5l89mp1nqypn1fy7w6amiha88-docker-27.5.0",
               "default": true
             }
           ],
-          "store_path": "/nix/store/9pdiwicp36l50rm6hasyfxm30yaidcs4-lima-1.0.1"
+          "store_path": "/nix/store/s9g8d3q5l89mp1nqypn1fy7w6amiha88-docker-27.5.0"
+        }
+      }
+    },
+    "go@1.23.4": {
+      "last_modified": "2025-01-19T08:16:51Z",
+      "resolved": "github:NixOS/nixpkgs/50165c4f7eb48ce82bd063e1fb8047a0f515f8ce#go",
+      "source": "devbox-search",
+      "version": "1.23.4",
+      "systems": {
+        "aarch64-darwin": {
+          "outputs": [
+            {
+              "name": "out",
+              "path": "/nix/store/lg7l1czmd5hqwwhjszprdz342q98zmkw-go-1.23.4",
+              "default": true
+            }
+          ],
+          "store_path": "/nix/store/lg7l1czmd5hqwwhjszprdz342q98zmkw-go-1.23.4"
+        },
+        "aarch64-linux": {
+          "outputs": [
+            {
+              "name": "out",
+              "path": "/nix/store/2x7k6yj9z37s3d3x5j3kkz6bcak8k9qr-go-1.23.4",
+              "default": true
+            }
+          ],
+          "store_path": "/nix/store/2x7k6yj9z37s3d3x5j3kkz6bcak8k9qr-go-1.23.4"
+        },
+        "x86_64-darwin": {
+          "outputs": [
+            {
+              "name": "out",
+              "path": "/nix/store/8x0ag0v37rfy9z58a8yy3hakj3dzdr9c-go-1.23.4",
+              "default": true
+            }
+          ],
+          "store_path": "/nix/store/8x0ag0v37rfy9z58a8yy3hakj3dzdr9c-go-1.23.4"
+        },
+        "x86_64-linux": {
+          "outputs": [
+            {
+              "name": "out",
+              "path": "/nix/store/0b6vsy4fa4i4qpk1011hi6251nwdg5y8-go-1.23.4",
+              "default": true
+            }
+          ],
+          "store_path": "/nix/store/0b6vsy4fa4i4qpk1011hi6251nwdg5y8-go-1.23.4"
         }
       }
     }

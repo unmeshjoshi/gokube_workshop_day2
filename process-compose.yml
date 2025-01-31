@@ -1,0 +1,39 @@
+version: "0.5"
+
+x-depends-on: &depends_on
+  build:
+    condition: process_completed_successfully
+x-availability: &availability
+  restart: always
+
+processes:
+  build: 
+    command: make build
+
+  apiserver:
+    command: "./out/apiserver --address :${PORT}"
+    depends_on: *depends_on
+    availability: *availability
+    liveness_probe: &probe
+      period_seconds: 5
+      http_get:
+        host: ${HOST}
+        scheme: http
+        path: "/api/v1/healthz"
+        port: ${PORT}
+    readiness_probe: *probe
+
+  controller:
+    command: ./out/controller
+    depends_on: *depends_on
+    availability: *availability
+
+  kubelet:
+    command: "./out/kubelet --node-name default --api-server-url ${HOST}:${PORT}"
+    depends_on:
+      build:
+        condition: process_completed_successfully
+      apiserver:
+        condition: process_healthy
+    availability: *availability
+  

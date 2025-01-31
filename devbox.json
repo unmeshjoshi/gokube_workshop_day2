@@ -1,12 +1,26 @@
 {
-  "$schema": "https://raw.githubusercontent.com/jetify-com/devbox/0.11.0/.schema/devbox.schema.json",
+  "$schema": "https://raw.githubusercontent.com/jetify-com/devbox/0.13.7/.schema/devbox.schema.json",
   "packages": [
-    "goreleaser@latest",
-    "lima@latest",
+    "go@1.23.4",
+    "docker@27.5.0",
+    "colima@0.8.1"
   ],
+  "env": {
+    "PATH": "$PATH:$PWD/bin:$HOME/go/bin",
+    "DOCKER_HOST": "unix://${HOME}/.colima/default/docker.sock",
+    "PROJECT_HOME": "$PWD"
+  },
   "shell": {
     "init_hook": [
-      "echo 'Welcome to devbox! You are all set to explore Kubernetes' > /dev/null",
+      "echo 'Welcome to devbox!'"
     ],
-  },
+    "scripts": {
+      "test": [
+        "make -B test"
+      ],
+      "app": [
+        "make run"
+      ]
+    }
+  }
 }

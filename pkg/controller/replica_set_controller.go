@@ -48,39 +48,9 @@ func (rsc *ReplicaSetController) Reconcile(ctx context.Context, rs *api.ReplicaS
 	currentPodCount := len(activePods)
 	desiredPodCount := int(currentRS.Spec.Replicas)
 
-	//Assignment3. Implement Logic to Create Pods.
+	//Assignment 3:. Implement Logic to Create Pods.
 	_ = currentPodCount
 	_ = desiredPodCount
-	//Reference Implementation below.
-	//if currentPodCount < desiredPodCount {
-	//	// Create new pods
-	//	for i := currentPodCount; i < desiredPodCount; i++ {
-	//		for _, container := range currentRS.Spec.Template.Spec.Containers {
-	//			pod := &api.Pod{
-	//				ObjectMeta: api.ObjectMeta{
-	//					Name: generatePodNameFromReplicaSet(currentRS.Name),
-	//				},
-	//				Spec: api.PodSpec{
-	//					Containers: []api.Container{container},
-	//				},
-	//			}
-	//			if err := rsc.podRegistry.CreatePod(ctx, pod); err != nil {
-	//				return err
-	//			}
-	//		}
-	//	}
-	//	currentPodCount = desiredPodCount //
-	//	// Update ReplicaSet status
-	//	currentRS.Status.Replicas = int32(currentPodCount)
-	//	return rsc.replicaSetRegistry.Update(ctx, currentRS)
-	//
-	//} else if currentPodCount > desiredPodCount {
-	//	// TODO: Implement pod deletion logic if needed
-	//	currentPodCount = desiredPodCount
-	//	// Update ReplicaSet status
-	//	currentRS.Status.Replicas = int32(currentPodCount)
-	//	return rsc.replicaSetRegistry.Update(ctx, currentRS)
-	//}
 
 	return nil
 }

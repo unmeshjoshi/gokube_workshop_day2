@@ -4,8 +4,9 @@ import (
 	"fmt"
 	"os"
 
-	"github.com/spf13/cobra"
 	"gokube/pkg/kubelet"
+
+	"github.com/spf13/cobra"
 )
 
 var (
@@ -25,7 +26,7 @@ func main() {
 		},
 	}
 
-	rootCmd.Flags().StringVar(&nodeName, "node-name", "", "The name of the node")
+	rootCmd.Flags().StringVar(&nodeName, "node-name", "test", "The name of the node")
 	rootCmd.Flags().StringVar(&apiServerURL, "api-server-url", "localhost:8080", "The URL of the API server")
 
 	if err := rootCmd.Execute(); err != nil {
