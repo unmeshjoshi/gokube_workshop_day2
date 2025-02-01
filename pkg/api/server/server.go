@@ -14,15 +14,17 @@ import (
 
 // APIServer represents the API server
 type APIServer struct {
-	nodeRegistry *registry.NodeRegistry
-	podRegistry  *registry.PodRegistry
+	nodeRegistry       *registry.NodeRegistry
+	podRegistry        *registry.PodRegistry
+	replicasetRegistry *registry.ReplicaSetRegistry
 }
 
 // NewAPIServer creates a new instance of APIServer
 func NewAPIServer(storage storage.Storage) *APIServer {
 	return &APIServer{
-		nodeRegistry: registry.NewNodeRegistry(storage),
-		podRegistry:  registry.NewPodRegistry(storage),
+		nodeRegistry:       registry.NewNodeRegistry(storage),
+		podRegistry:        registry.NewPodRegistry(storage),
+		replicasetRegistry: registry.NewReplicaSetRegistry(storage),
 	}
 }
 
@@ -42,6 +44,7 @@ func (s *APIServer) registerRoutes(container *restful.Container) {
 	ws.Route(ws.GET("/healthz").To(s.healthz))
 	handlers.RegisterPodRoutes(ws, handlers.NewPodHandler(s.podRegistry))
 	handlers.RegisterNodeRoutes(ws, handlers.NewNodeHandler(s.nodeRegistry))
+	handlers.RegisterReplicasetRoutes(ws, handlers.NewReplicasetHandler(s.replicasetRegistry))
 
 	container.Add(ws)
 }
