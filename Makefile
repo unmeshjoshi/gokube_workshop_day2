@@ -10,7 +10,7 @@ GOINSTALL=$(GOCMD) install
 
 # Make parameters
 OUT_DIR=out
-BINARIES=apiserver controller kubelet
+BINARIES=apiserver controller kubelet scheduler
 BINARY_PATHS=$(addprefix $(OUT_DIR)/,$(BINARIES))
 EXECUTABLES=$(addprefix $(GOPATH)/,$(BINARIES))
 
@@ -71,8 +71,9 @@ $(OUT_DIR)/%: ## Build to out directory
 build/apiserver: $(OUT_DIR)/apiserver ## Build apiserver
 build/controller: $(OUT_DIR)/controller ## Build controller
 build/kubelet: $(OUT_DIR)/kubelet ## Build kubelet
+build/scheduler: $(OUT_DIR)/scheduler ## Build scheduler
 
-build: build/apiserver build/controller build/kubelet ## Build all
+build: build/apiserver build/controller build/kubelet build/scheduler ## Build all
 
 precommit: deps fmt vet lint test build ## Run precommit target(deps,fmt,vet,lint,test)
 	@echo "CI build completed successfully"
@@ -86,8 +87,9 @@ $(GO_BIN_TARGETS):
 install/apiserver: $(GOPATH)/bin/apiserver ## Install apiserver in $(GOPATH)/bin
 install/controller: $(GOPATH)/bin/controller ## Install controller in $(GOPATH)/bin
 install/kubelet: $(GOPATH)/bin/kubelet ## Install kubelet in $(GOPATH)/bin
+install/scheduler: $(GOPATH)/bin/scheduler ## Install scheduler in $(GOPATH)/bin
 
-install: install/apiserver install/controller install/kubelet ## Install all
+install: install/apiserver install/controller install/kubelet install/scheduler ## Install all
 run: ### Run the project
 	process-compose -f process-compose.yml up
 

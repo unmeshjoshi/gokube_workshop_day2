@@ -55,10 +55,21 @@ func (h *PodHandler) CreatePod(request *restful.Request, response *restful.Respo
 
 // ListPods handles GET requests to list all Pods
 func (h *PodHandler) ListPods(request *restful.Request, response *restful.Response) {
+	nodeName := request.QueryParameter("nodeName")
 	pods, err := h.podRegistry.ListPods(request.Request.Context())
 	if err != nil {
 		api.WriteError(response, http.StatusInternalServerError, err)
 		return
+	}
+
+	if nodeName != "" {
+		filteredPods := make([]*api.Pod, 0)
+		for _, pod := range pods {
+			if pod.NodeName == nodeName {
+				filteredPods = append(filteredPods, pod)
+			}
+		}
+		pods = filteredPods
 	}
 
 	api.WriteResponse(response, http.StatusOK, pods)

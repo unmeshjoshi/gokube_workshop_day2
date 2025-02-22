@@ -123,10 +123,15 @@ func (h *NodeHandler) DeleteNode(request *restful.Request, response *restful.Res
 
 // ListNodes handles GET requests to list all Nodes
 func (h *NodeHandler) ListNodes(request *restful.Request, response *restful.Response) {
+
+	nodeName := request.Attribute("nodeName")
 	nodes, err := h.nodeRegistry.ListNodes(request.Request.Context())
 	if err != nil {
 		api.WriteError(response, http.StatusInternalServerError, err)
 		return
+	}
+	if nodeName != nil {
+
 	}
 
 	api.WriteResponse(response, http.StatusOK, nodes)

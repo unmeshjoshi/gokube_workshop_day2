@@ -36,4 +36,13 @@ processes:
       apiserver:
         condition: process_healthy
     availability: *availability
+
+  scheduler:
+    command: "./out/scheduler --etcd-port 2379"
+    depends_on:
+      build:
+        condition: process_completed_successfully
+      apiserver:
+        condition: process_healthy
+    availability: *availability
   
